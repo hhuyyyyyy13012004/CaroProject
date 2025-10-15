@@ -4,6 +4,11 @@
  */
 package view;
 
+import model.XOButton;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+
 /**
  *
  * @author hoang
@@ -11,13 +16,37 @@ package view;
 public class GameClientFrm extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GameClientFrm.class.getName());
-
+    private final int BOARD_SIZE = 20;
+    private XOButton[][] buttons = new XOButton[BOARD_SIZE][BOARD_SIZE];
     /**
      * Creates new form GameClientFrm
      */
     public GameClientFrm() {
-        initComponents();
+    initComponents();
+
+    // Tuỳ chọn: đảm bảo nhìn thấy panel trên Design/run
+    panelBoard.setPreferredSize(new java.awt.Dimension(600, 600));
+    setLocationRelativeTo(null);
+
+    // Gắn handler cho nút Thoát ván
+    btnQuitGame.addActionListener(e -> {
+        // this.dispose();          // chỉ đóng cửa sổ ván
+        System.exit(0);             // hoặc thoát hẳn chương trình
+    });
+
+    // Tạo nút caro 20x20
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            XOButton btn = new XOButton(i, j);
+            btn.setPreferredSize(new java.awt.Dimension(30, 30));
+            panelBoard.add(btn);
+            buttons[i][j] = btn;
+        }
     }
+
+    pack(); // tính lại kích thước theo preferred size
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,17 +57,48 @@ public class GameClientFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelBoard = new javax.swing.JPanel();
+        lblStatus = new javax.swing.JLabel();
+        btnQuitGame = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panelBoard.setLayout(new java.awt.GridLayout(20, 20));
+
+        lblStatus.setText("Lượt của X ");
+
+        btnQuitGame.setText("Thoát ván");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnQuitGame, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                        .addGap(391, 391, 391))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(714, 714, 714))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(btnQuitGame, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(187, 187, 187))
         );
 
         pack();
@@ -70,5 +130,8 @@ public class GameClientFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnQuitGame;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JPanel panelBoard;
     // End of variables declaration//GEN-END:variables
 }
