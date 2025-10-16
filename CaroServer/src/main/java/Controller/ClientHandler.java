@@ -10,6 +10,7 @@ import java.io.*;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable {
+
     private final Socket socket;
     private final UserManager userManager;
     private BufferedReader in;
@@ -36,14 +37,55 @@ public class ClientHandler implements Runnable {
         } finally {
             try {
                 socket.close();
-            } catch (IOException ignored) {}
+            } catch (IOException ignored) {
+            }
         }
     }
 
     private void handleMessage(String msg) {
         System.out.println("[Server] Received: " + msg);
-        out.println("Echo: " + msg);
 
+        if (msg.startsWith("REGISTER|")) {
+            String[] parts = msg.split("\\|");
+            if (parts.length == 3) {
+                String username = parts[1];
+                String password = parts[2];
+
+                boolean success = userManager.register(username, password);
+
+                if (success) {
+                    out.println("REGISTER_SUCCESS");
+                    System.out.println("[Server] User registered: " + username);
+                } else {
+                    out.println("REGISTER_FAIL");
+                    System.out.println("[Server] Register failed for user: " + username);
+                }
+            } else {
+                out.println("REGISTER_FAIL");
+            }
+
+        } else if (msg.startsWith("LOGIN|")) {
+            String[] parts = msg.split("\\|");
+            if (parts.length == 3) {
+                String username = parts[1];
+                String password = parts[2];
+
+                User user = userManager.login(username, password);
+                if (user != null) {
+                    out.println("LOGIN_SUCCESS");
+                    System.out.println("[Server] Login success: " + username);
+                } else {
+                    out.println("LOGIN_FAIL");
+                    System.out.println("[Server] Login failed: " + username);
+                }
+            } else {
+                out.println("LOGIN_FAIL");
+            }
+
+        } else {
+            out.println("UNKNOWN_COMMAND");
+            System.out.println("[Server] Unknown command: " + msg);
+        }
     }
-}
 
+}
