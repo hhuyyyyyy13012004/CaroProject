@@ -1,1 +1,8 @@
-com\mycompany\caroclient\CaroClient.class
+Controller\ClientHandler.class
+Controller\GameController.class
+Model\User.class
+View\LoginFrame$2.class
+View\GameFrame.class
+View\LoginFrame.class
+View\RegisterFrame.class
+View\LoginFrame$1.class
