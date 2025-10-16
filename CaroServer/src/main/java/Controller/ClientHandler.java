@@ -41,11 +41,9 @@ public class ClientHandler implements Runnable {
     }
 
     private void handleMessage(String msg) {
-        // Ví dụ xử lý tạm thời
         System.out.println("[Server] Received: " + msg);
         out.println("Echo: " + msg);
 
-        // Sau này sẽ thêm lệnh như: LOGIN username password | REGISTER user pass | PLAY ...
     }
 }
 
