@@ -9,7 +9,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>25</maven.compiler.release>
-        <exec.mainClass>com.mycompany.caroserver.CaroServer</exec.mainClass>
+        <exec.mainClass>Controller.ServerMain</exec.mainClass>
     </properties>
     <dependencies>
     <!-- Thư viện Gson để đọc/ghi file JSON -->

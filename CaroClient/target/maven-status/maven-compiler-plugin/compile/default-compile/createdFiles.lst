@@ -2,6 +2,7 @@ Controller\ClientHandler.class
 Controller\GameController.class
 Model\User.class
 View\LoginFrame$2.class
+View\RegisterFrame$1.class
 View\GameFrame.class
 View\LoginFrame.class
 View\RegisterFrame.class
