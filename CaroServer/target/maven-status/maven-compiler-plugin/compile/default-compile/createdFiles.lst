@@ -1,1 +1,8 @@
+Model\UserManager$1.class
+Model\GameRoom.class
+Model\User.class
+Model\UserManager.class
 com\mycompany\caroserver\CaroServer.class
+Util\HashUtil.class
+Model\Board.class
+Model\Move.class
