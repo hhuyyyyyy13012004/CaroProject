@@ -8,6 +8,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>25</maven.compiler.release>
-        <exec.mainClass>com.mycompany.caroclient.CaroClient</exec.mainClass>
+        <exec.mainClass>View.RegisterFrame</exec.mainClass>
     </properties>
 </project>
